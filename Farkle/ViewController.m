@@ -7,9 +7,15 @@
 //
 
 #import "ViewController.h"
+#import "DieLabel.h"
 
-@interface ViewController ()
 
+
+@interface ViewController () <DieLabelDelegate>
+{
+
+    NSMutableArray *dice;
+}
 @end
 
 @implementation ViewController
@@ -17,8 +23,30 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    
+    dice = [NSMutableArray array];
+
 }
+
+-(void)didChooseDie:(DieLabel *)dieLabel
+
+{
+    [dice addObject:dieLabel];
+}
+
+
+
+- (IBAction)onRollButtonPressed:(id)sender
+{
+    
+    for (DieLabel *dieLabel in self.view.subviews)
+        if ([dieLabel isKindOfClass:[DieLabel class]]) {
+            [dieLabel roll];
+            dieLabel.delegate = self;
+        }
+}
+
+
 
 - (void)didReceiveMemoryWarning
 {

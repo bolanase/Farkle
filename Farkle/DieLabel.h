@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  DieLabel.h
 //  Farkle
 //
 //  Created by Anthony  Severino on 1/15/14.
@@ -7,8 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DieLabel.h"
+#import "DieLabelDelegate.h"
 
-@interface ViewController : UIViewController
+@interface DieLabel : UILabel
+@property NSString *name;
+@property id<DieLabelDelegate> delegate;
+
+
+
+-(void)roll;
+
+    
+
 
 @end
